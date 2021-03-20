@@ -1,35 +1,30 @@
 #!/usr/bin/env bash
 #author:spark
-#需要docker环境,下载本文件到容器内任意位置,以下示例是放到了/jd/scripts
-#举个栗子,我们要拉取大佬i-chenzhe的qx脚本仓库,则在计划任务内添加以下任务(半小时拉取一次,时间自定):
-###-> */30 * * * *  /bin/bash /jd/scripts/git_diy.sh  i-chenzhe  qx     <-###
-#或者添加到到diy.sh最后一行即可,跟随pull的频率,不过pull的频率远远跟不上柘大佬的节奏!
-#如果仓库内有不想执行的脚本,注释即可!
-#群文件sendinfo.js sendinfo.sh两个文件请放到scripts映射目录下,如没有,则没有通知消息
-
-#操作之前请备份,信息丢失,概不负责.
-#操作之前请备份,信息丢失,概不负责.
-#操作之前请备份,信息丢失,概不负责.
+修改自https://github.com/Hydrahail-Johnson/diy_scripts/blob/main/sh/git_diy.sh
+增加第三个传入变量，自定义脚本所在仓库的目录，不传入则默认仓库根目录
 
 declare -A BlackListDict
 author=$1
 repo=$2
+jsdir=$3
+
 #指定仓库屏蔽关键词,不添加计划任务,多个按照格式二
 BlackListDict['i-chenzhe']="_get"
 BlackListDict['sparkssssssss']="smzdm|tg|xxxxxxxx"
+BlackListDict['moposmall']="jx_cfd.js"
 
 blackword=${BlackListDict["${author}"]}
 blackword=${blackword:-"wojiushigejimo"}
 
-if [ $# != 2 ] ; then
-  echo "USAGE: $0 author repo"
-  exit 0;
-fi
+# if [ $# > 4 ] ; then
+#   echo "USAGE: $0 author repo"
+#   exit 0;
+# fi
 
 diyscriptsdir=/jd/diyscripts
 mkdir -p ${diyscriptsdir}
 
-if [ ! -d "$diyscriptsdir/${author}_${repo}" ]; then
+if [ ! -d "$diyscriptsdir/${author}_${repo}/$jsdir" ]; then
   echo -e "${author}本地仓库不存在,从gayhub拉取ing..."
   cd ${diyscriptsdir} &&  git clone https://github.com/${author}/${repo}.git ${author}_${repo}
   gitpullstatus=$?
@@ -53,7 +48,7 @@ rand(){
 
 function addnewcron {
   addname=""
-  cd ${diyscriptsdir}/${author}_${repo}
+  cd ${diyscriptsdir}/${author}_${repo}/$jsdir
   for js in `ls *.js|egrep -v $blackword`;
     do 
       croname=`echo "${author}_$js"|awk -F\. '{print $1}'`
@@ -78,7 +73,7 @@ function delcron {
   cronfiles=$(grep "$author" /jd/config/crontab.list|grep -v "^#"|awk '{print $8}'|awk -F"${author}_" '{print $2}')
   for filename in $cronfiles;
     do
-      if [ ! -f "${diyscriptsdir}/${author}_${repo}/${filename}.js" ]; then 
+      if [ ! -f "${diyscriptsdir}/${author}_${repo}/${jsdir}/${filename}.js" ]; then 
         sed -i "/\<bash jd ${author}_${filename}\>/d" /jd/config/crontab.list && echo -e "删除失效脚本${filename}."
 	delname="${delname}\n${author}_${filename}"
       fi
