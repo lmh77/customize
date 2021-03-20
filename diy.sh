@@ -9,7 +9,8 @@ cd /jd/diyscripts/lmh77_customize && git reset --hard && git pull \
         && chmod +x /jd/scripts/sendinfo.sh \
         && ln -sf cp -f /jd/diyscripts/lmh77_customize/runall.sh /usr/bin/ruanall \
         && chmod +x /usr/local/bin/runall \
-        && ln -sf cp -f /jd/diyscripts/lmh77_customize/diy.sh /usr/bin/diy \
+        && cp -f  /jd/diyscripts/lmh77_customize/diy.sh /jd/config/diy.sh \
+        && ln -sf /jd/diyscripts/lmh77_customize/diy.sh /usr/bin/diy \
         && chmod +x /usr/local/bin/diy
 echo "--------------------------------------------------------------------------------"
 echo -e "开始获取自定义任务......\n" \
