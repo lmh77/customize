@@ -8,7 +8,7 @@ cd /jd/diyscripts/lmh77_customize && git reset --hard && git pull \
         && cp -f /jd/diyscripts/lmh77_customize/sendinfo.js /jd/scripts/sendinfo.js \
         && chmod +x /jd/scripts/sendinfo.sh \
         && ln -sf cp -f /jd/diyscripts/lmh77_customize/runall.sh /usr/bin/ruanall \
-        && chmod +x /usr/local/bin/ruanall
+        && chmod +x /usr/local/bin/runall
 echo "--------------------------------------------------------------------------------"
 echo -e "开始获取自定义任务......\n" \
         && echo -e "Git获取https://github.com/i-chenzhe/qx\n" \
