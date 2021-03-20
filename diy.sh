@@ -18,4 +18,6 @@ echo -e "开始获取自定义任务......\n" \
         
 echo "--------------------------------------------------------------------------------"
 
+
+wget --no-check-certificate -O /jd/scripts/ziyescript_bububao.js https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE/main/Task/bububao.js
 exit
