@@ -10,7 +10,7 @@ for ((i=0; i<${#diytask[*]}; i++));
 done
 
 
-lxk0301=($(cd ${ScriptsDir}; ls *.js | grep -v "_jd_" |grep -E "j[drx]_"))
+lxk0301=($(cd ${ScriptsDir}; ls *.js | grep -v "_jd_" |grep -E "j[drx]_"|grep -v "jd_crazy_joy_coin"))
 for ((i=0; i<${#lxk0301[*]}; i++));
     do
       bash jd ${lxk0301[i]} now
