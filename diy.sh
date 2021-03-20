@@ -8,7 +8,7 @@ cd /jd/diyscripts/lmh77_customize && git reset --hard && git pull
 cp -f /jd/diyscripts/lmh77_customize/sendinfo.sh /jd/scripts/sendinfo.sh \
         && cp -f /jd/diyscripts/lmh77_customize/sendinfo.js /jd/scripts/sendinfo.js \
         && chmod +x /jd/scripts/sendinfo.sh \
-        && ln -sf cp -f /jd/diyscripts/lmh77_customize/runall.sh /usr/local/bin/ruanall \
+        && ln -sf cp -f /jd/diyscripts/lmh77_customize/runall.sh /usr/local/bin/runall \
         && chmod +x /usr/local/bin/runall \
         && cp -f  /jd/diyscripts/lmh77_customize/diy.sh /jd/config/diy.sh \
         && ln -sf /jd/diyscripts/lmh77_customize/diy.sh /usr/local/bin/diy \
