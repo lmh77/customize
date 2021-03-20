@@ -2,7 +2,8 @@
 #author:spark
 # 修改自https://github.com/Hydrahail-Johnson/diy_scripts/blob/main/sh/git_diy.sh
 # 增加第三个传入变量，自定义脚本所在仓库的目录，不传入则默认仓库根目录
-
+# 修改自定义crontab插入行 如 "select_line=自定义" 为插入 自定义该行之后
+select_line=自定义
 declare -A BlackListDict
 author=$1
 repo=$2
@@ -55,7 +56,7 @@ function addnewcron {
       script_date=`cat  $js|grep ^[0-9]|awk '{print $1,$2,$3,$4,$5}'|egrep -v "[a-zA-Z]|:|\."|sort |uniq|head -n 1`
       [ -z "${script_date}" ] && script_date=`cat  $js|grep -Eo "([0-9]+|\*|[0-9]+[,-].*) ([0-9]+|\*|[0-9]+[,-].*) ([0-9]+|\*|[0-9]+[,-].*) ([0-9]+|\*|[0-9]+[,-].*) ([0-9]+|\*|[0-9][,-].*)"|sort |uniq|head -n 1`
       [ -z "${script_date}" ] && cron_min=$(rand 1 59) && cron_hour=$(rand 7 9) && script_date="${cron_min} ${cron_hour} * * *"
-      [ $(grep -c -w "$croname" /jd/config/crontab.list) -eq 0 ] && sed -i "/自定义/a${script_date} bash jd $croname"  /jd/config/crontab.list  && echo -e "添加了新的脚本${croname}." && bash jd ${croname} now >/dev/null &
+      [ $(grep -c -w "$croname" /jd/config/crontab.list) -eq 0 ] && sed -i "/${select_line}/a${script_date} bash jd $croname"  /jd/config/crontab.list  && echo -e "添加了新的脚本${croname}." && bash jd ${croname} now >/dev/null &
       if [ ! -f "/jd/scripts/${author}_$js" ];then
         \cp $js /jd/scripts/${author}_$js
       else
