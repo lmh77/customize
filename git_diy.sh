@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #author:spark
-修改自https://github.com/Hydrahail-Johnson/diy_scripts/blob/main/sh/git_diy.sh
-增加第三个传入变量，自定义脚本所在仓库的目录，不传入则默认仓库根目录
+# 修改自https://github.com/Hydrahail-Johnson/diy_scripts/blob/main/sh/git_diy.sh
+# 增加第三个传入变量，自定义脚本所在仓库的目录，不传入则默认仓库根目录
 
 declare -A BlackListDict
 author=$1
