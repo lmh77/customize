@@ -14,13 +14,16 @@ cp -f /jd/diyscripts/lmh77_customize/sendinfo.sh /jd/scripts/sendinfo.sh \
         && ln -sf /jd/diyscripts/lmh77_customize/diy.sh /usr/local/bin/diy \
         && chmod +x /usr/local/bin/diy \
         && ln -sf /jd/diyscripts/lmh77_customize/git_diy.sh /usr/local/bin/git_diy \
-        && chmod +x /usr/local/bin/git_diy
+        && chmod +x /usr/local/bin/git_diy \
+        
 echo "--------------------------------------------------------------------------------"
 echo -e "开始获取自定义任务......\n" \
         && echo -e "Git获取https://github.com/i-chenzhe/qx\n" \
         && bash git_diy.sh i-chenzhe qx \
         && echo -e "Git获取https://github.com/cui521/jdqd\n" \
-        && bash git_diy.sh cui521 jdqd
+        && bash git_diy.sh cui521 jdqd \
+        && echo -e "Git获取https://github.com/moposmall/Script\n" \
+        && bash git_diy.sh moposmall Script Me \
         
 echo "--------------------------------------------------------------------------------"
 
