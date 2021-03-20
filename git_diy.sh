@@ -16,10 +16,10 @@ BlackListDict['moposmall']="jx_cfd.js"
 blackword=${BlackListDict["${author}"]}
 blackword=${blackword:-"wojiushigejimo"}
 
-# if [ $# > 4 ] ; then
-#   echo "USAGE: $0 author repo"
-#   exit 0;
-# fi
+if [ $# = 4 ] ; then
+  echo "USAGE: [$0 author repo] or [$0 author repo jsdir]"
+  exit 0;
+fi
 
 diyscriptsdir=/jd/diyscripts
 mkdir -p ${diyscriptsdir}
