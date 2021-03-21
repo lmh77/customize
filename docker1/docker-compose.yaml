@@ -1,0 +1,15 @@
+jd:
+  image: lxk0301/jd_scripts
+  container_name: jd
+  restart: always
+  volumes:
+    - ./my_crontab_list.sh:/scripts/docker/my_crontab_list.sh
+    - ./my_diy_shell.sh:/scripts/docker/my_diy_shell.sh
+    - ./logs:/scripts/logs
+  tty: true
+  extra_hosts:
+    - "gitee.com:180.97.125.228"
+    - "github.com:13.229.188.59"
+    - "raw.githubusercontent.com:151.101.228.133"
+  env_file: my_jd_env.sh
+
