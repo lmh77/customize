@@ -56,7 +56,7 @@ for scriptFile in $(ls | grep -E "jd_|z_" | tr "\n" " "); do
             fi
         fi
         echo "#$(sed -n "s/.*new Env('\(.*\)').*/\1/p" $scriptFile)" >>/scripts/docker/merged_list_file.sh
-        echo "$(sed -n "s/.*cronexpr=\"\(.*\)\".*/\1/p" $scriptFile) spnode /scripts/$scriptFile |ts >>/scripts/logs/$(echo $scriptFile | sed "s/.js/.log/g") 2>&1 &" >>/scripts/docker/merged_list_file.sh
+        echo "$(sed -n "s/.*cronexpr=\"\(.*\)\".*/\1/p" $scriptFile) node /scripts/$scriptFile |ts >>/scripts/logs/$(echo $scriptFile | sed "s/.js/.log/g") 2>&1 &" >>/scripts/docker/merged_list_file.sh
     fi
 done
-crontab -l > /scripts/logs/.crontab.sh
+crontab -l > /scripts/logs/crontab.log
