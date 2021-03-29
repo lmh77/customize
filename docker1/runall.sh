@@ -1,3 +1,4 @@
+#!/bin/sh
 lxk0301=($(cd /scripts; ls *.js | grep -v "z_" |grep -E "j[drx]_"|grep -v "jd_crazy_joy_coin"| grep -v "jd_getFanslove"))
 for ((i=0; i<${#lxk0301[*]}; i++));
     do
