@@ -9,3 +9,4 @@ for ((i=0; i<${#diytask[*]}; i++));
     do
       . /scripts/docker/auto_help.sh export > /scripts/logs/auto_help_export.log && spnode  /scripts/${diytask[i]} |ts >>/scripts/logs/${diytask[i]}.log 2>&1 &
 done
+echo "后台执行任务..."
