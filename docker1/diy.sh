@@ -1,3 +1,4 @@
+# 拉取
 mkdir -p /dust/tmp
 cd /dust/tmp
 ichenzhe="$(curl -sX POST "https://share.r2ray.com/dust/i-chenzhe/" | jq | grep name | grep js | cut -f4 -d\" | grep -v "json\|getFanslove" | sed 's/^/https:\/\/share\.r2ray\.com\/dust\/i-chenzhe\//g' | tr "\n" " ")"
@@ -7,6 +8,8 @@ normal="$(curl -sX POST "https://share.r2ray.com/dust/normal/" | jq | grep name 
 wget  -q --no-check-certificate $ichenzhe $car $member $normal
 cp -rf /dust/tmp/*.js /dust/
 rm -rf /dust/tmp/*
+
+# 添加至cron任务列表
 cd /dust
 for scriptFile in $(ls *.js | tr "\n" " "); do
     if [ -n "$(sed -n "s/.*cronexpr=\"\(.*\)\".*/\1/p" $scriptFile)" ]; then
